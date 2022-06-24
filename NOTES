@@ -1,0 +1,56 @@
+------------------------------------------------ npm i react-router-dom@6
+
+- "App.js"
+  => See diferences
+
+* { Switch } replaced to { Routes }
+* "exact" No Longer needed ( automatically uses exact )
+  => "\*" => can be use for "/product/anything"
+
+**\*** V6 **\***
+Order does not matter anymore ( V6 automatically find the best matcing routes )
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- "MainHeader.js"
+  => See diferences
+
+* { Link }
+  => No changes
+
+* { NavLink }
+  => Removed <activeClassName={classes.active}>
+  => Now <className={(navData) => (navData.isActive ? classes.active : "")}>
+  => className now is a function who takes current URL and return changes
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+## Nesting Routes
+
+- "App.js"
+  => Implemented { Routes, Navigate }
+
+- "Welcome.js"
+  => Implemented { Outlet }
+
+* Using { Routes } => path="" is relative to the parent path=""
+  => We dont have to type the entire "path", only the "/extraPart" is needed in the nested route
+  Example => "App.js" => "Welcome.js"
+
+* { Navigate } instead of { Redirect }
+  => <Route path='/' element={<Navigate replace to='/welcome' />} />
+
+* { Outlet }
+  => To insert nested components
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- "Product.js"
+  => Using { useNavigate }
+
+* No longet support { useHistory } ".replace()" / ".push()"
+
+* Replaced to { useNavigate }
+  => navigate("/anyLocation", { replace: true }) => To redirect, instead of Replacing
+  => navigate(-1) go back once
+  => navigate(1) go forward once
